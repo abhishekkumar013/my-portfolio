@@ -1,7 +1,34 @@
-import React from "react";
-import { Mail, Phone, MapPin, Github, Linkedin, Instagram } from "lucide-react";
+import React, { useRef } from "react";
+import { Mail, Github, Linkedin, Instagram } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 
 const Contact = () => {
+  const form = useRef<HTMLFormElement>(null);
+
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    if (form.current) {
+      emailjs
+        .sendForm(
+          import.meta.env.VITE_SERVICE_ID || "",
+          import.meta.env.VITE_TEMPLATE_ID || "",
+          form.current,
+          import.meta.env.VITE_PUBLIC_KEY || ""
+        )
+        .then(
+          (result) => {
+            toast.success("Message sent successfully!");
+          },
+          (error) => {
+            toast.error("Failed to send message. Please try again.");
+          }
+        );
+
+      form.current.reset();
+    }
+  };
+
   return (
     <section
       id="contactme"
@@ -24,17 +51,6 @@ const Contact = () => {
                 <Mail className="h-5 w-5" />
                 <span>sahaabhishek443@gmail.com</span>
               </a>
-              {/* <a
-                href="tel:+917079268022"
-                className="flex items-center space-x-3 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-              >
-                <Phone className="h-5 w-5" />
-                <span>+91 7079268022</span>
-              </a> */}
-              {/* <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
-                <MapPin className="h-5 w-5" />
-                <span>Motihari, Bihar</span>
-              </div> */}
             </div>
 
             <div className="pt-6">
@@ -71,7 +87,7 @@ const Contact = () => {
           </div>
 
           <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg transition-colors">
-            <form className="space-y-6">
+            <form ref={form} onSubmit={sendEmail} className="space-y-6">
               <div>
                 <label
                   htmlFor="name"
@@ -81,7 +97,9 @@ const Contact = () => {
                 </label>
                 <input
                   type="text"
+                  name="user_name"
                   id="name"
+                  required
                   className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white transition-colors"
                 />
               </div>
@@ -94,7 +112,9 @@ const Contact = () => {
                 </label>
                 <input
                   type="email"
+                  name="user_email"
                   id="email"
+                  required
                   className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white transition-colors"
                 />
               </div>
@@ -107,7 +127,9 @@ const Contact = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={4}
+                  required
                   className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white transition-colors"
                 ></textarea>
               </div>

@@ -5,7 +5,7 @@ const Skills = () => {
   const skills = {
     languages: ["C++", "C", "JavaScript", "Java"],
     frameworks: ["React", "Node.js", "Express", "Next.js", "Redux"],
-    databases: ["MySQL", "MongoDB", "PostgreSQL", "GraphQL", "Prisma"],
+    databases: ["SQL", "MongoDB", "PostgreSQL", "GraphQL", "Prisma"],
     tools: ["Git", "Firebase", "Postman", "Vs Code", "Android Studio"],
   };
 

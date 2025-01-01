@@ -2,8 +2,10 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { BrowserRouter as Router } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import App from "./App.tsx";
 import "./index.css";
+import "react-toastify/dist/ReactToastify.css";
 
 // Set initial theme to prevent flash
 const savedTheme = localStorage.getItem("theme");
@@ -19,6 +21,7 @@ createRoot(document.getElementById("root")!).render(
     <ThemeProvider>
       <Router>
         <App />
+        <ToastContainer position="bottom-right" />
       </Router>
     </ThemeProvider>
   </StrictMode>

@@ -133,6 +133,18 @@ const Projects = () => {
       code_repo_url: "https://github.com/abhishekkumar013/react-popup-toast",
       cover: "/assets/project_7.png",
     },
+    {
+      id: "9",
+      title: "Udgam Vidya Mandir - School Website",
+      shortDescription:
+        "A responsive website showcasing Udgam Vidya Mandir's information.",
+      fullDescription:
+        "Udgam Vidya Mandir is a school website developed as a freelance project to present essential information about the school. The platform includes details about the institution, its vision, facilities, and admission process. Built with a modern design and responsive layout, the website ensures an engaging user experience for parents and prospective students, making it easier to learn about the school online.",
+      technologies: ["React", "Tailwind CSS", "Google APIs"],
+      live_url: "https://udgam-vidya-mandir.vercel.app/",
+      code_repo_url: "https://github.com/abhishekkumar013/Vidya-Mandir-school",
+      cover: "",
+    },
   ];
 
   return (
